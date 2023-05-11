@@ -27,6 +27,6 @@ public class VendegController {
     //build create Vendeg REST API
     @PostMapping()
     public ResponseEntity<Vendeg> saveVendeg(@RequestBody Vendeg vendeg) {
-        return new ResponseEntity<Vendeg>(vendegService.saveVendeg(vendeg), HttpStatus.CREATED);
+        return new ResponseEntity<>(vendegService.saveVendeg(vendeg), HttpStatus.CREATED);
     }
 }
