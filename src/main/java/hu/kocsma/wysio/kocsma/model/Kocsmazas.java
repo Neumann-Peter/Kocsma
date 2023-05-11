@@ -22,4 +22,5 @@ public class Kocsmazas {
     private boolean detoxbaKerult;
     @ManyToOne
     private Vendeg vendeg;
+    private boolean lezarva = false;
 }

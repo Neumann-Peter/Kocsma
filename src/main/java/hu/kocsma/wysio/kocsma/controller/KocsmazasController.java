@@ -25,6 +25,12 @@ public class KocsmazasController {
 
     @PutMapping("/lezaras/{id}")
     public ResponseEntity<Kocsmazas> lezaras(@PathVariable Long id) {
-        throw new UnsupportedOperationException(); // TODO: implementálni a lezárást
+        Kocsmazas kocsmazas = kocsmazasService.lezaras(id);
+        if (kocsmazas != null) {
+            return new ResponseEntity<>(kocsmazas, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
 }

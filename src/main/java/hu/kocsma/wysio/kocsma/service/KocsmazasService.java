@@ -1,5 +1,6 @@
 package hu.kocsma.wysio.kocsma.service;
 
+import hu.kocsma.wysio.kocsma.Exception.KocsmazasNotFoundException;
 import hu.kocsma.wysio.kocsma.Exception.VendegNotFoundException;
 import hu.kocsma.wysio.kocsma.model.Kocsmazas;
 import hu.kocsma.wysio.kocsma.model.Vendeg;
@@ -28,9 +29,23 @@ public class KocsmazasService {
         }
 
         kocsmazas.setVendeg(vendeg.get());
+        kocsmazas.setLezarva(false);
 
         return kocsmazasRepository.save(kocsmazas);
     }
+    public Kocsmazas lezaras(Long id) {
+        Optional<Kocsmazas> kocsmazasOptional = kocsmazasRepository.findById(id);
+
+        if (kocsmazasOptional.isEmpty()) {
+            throw new KocsmazasNotFoundException("Nem található Kocsmazas az adatbázisban a következő ID-val: " + id);
+        }
+
+        Kocsmazas kocsmazas = kocsmazasOptional.get();
+        kocsmazas.setLezarva(true);
+
+        return kocsmazasRepository.save(kocsmazas);
+    }
+
 }
 
 
