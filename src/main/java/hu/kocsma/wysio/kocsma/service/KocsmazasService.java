@@ -1,5 +1,6 @@
 package hu.kocsma.wysio.kocsma.service;
 
+import hu.kocsma.wysio.kocsma.Exception.KocsmazasHasAlreadyClosedException;
 import hu.kocsma.wysio.kocsma.Exception.KocsmazasNotFoundException;
 import hu.kocsma.wysio.kocsma.Exception.VendegNotFoundException;
 import hu.kocsma.wysio.kocsma.model.Kocsmazas;
@@ -9,6 +10,7 @@ import hu.kocsma.wysio.kocsma.repository.VendegRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -30,6 +32,7 @@ public class KocsmazasService {
 
         kocsmazas.setVendeg(vendeg.get());
         kocsmazas.setLezarva(false);
+        kocsmazas.setMikortol(LocalDateTime.now());
 
         return kocsmazasRepository.save(kocsmazas);
     }
@@ -41,11 +44,14 @@ public class KocsmazasService {
         }
 
         Kocsmazas kocsmazas = kocsmazasOptional.get();
+        if(kocsmazas.isLezarva()){
+            throw new KocsmazasHasAlreadyClosedException("Már lezártad ezt a kocsmázást");
+        }
         kocsmazas.setLezarva(true);
+        kocsmazas.setMeddig(LocalDateTime.now());
 
         return kocsmazasRepository.save(kocsmazas);
     }
-
 }
 
 

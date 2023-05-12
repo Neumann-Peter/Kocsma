@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -22,5 +23,8 @@ public class Kocsmazas {
     private boolean detoxbaKerult;
     @ManyToOne
     private Vendeg vendeg;
+    @OneToMany
+    private List<Fogyasztas> fogyasztasok;
+    @Column
     private boolean lezarva = false;
 }

@@ -1,21 +1,20 @@
 package hu.kocsma.wysio.kocsma.model;
 
-import java.util.ArrayList;
+import jakarta.persistence.*;
+import lombok.Data;
 import java.util.List;
 
+@Data
+@Entity
+@Table(name = "Fogyasztasok")
 public class Fogyasztas {
-    private List<Ital> italLista;
-    private int elfogyaszottEgyses;
-    public Fogyasztas() {
-        italLista = new ArrayList<>();
-    }
-
-    public void hozzaAdItalt(Ital ital) {
-        italLista.add(ital);
-    }
-
-    public List<Ital> getItalLista() {
-        return italLista;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column
+    private int elfogyaszottEgyseg;
+    @ManyToOne
+    private Kocsmazas kocsmazas;
+    @OneToMany
+    private List<Ital> italok;
 }
