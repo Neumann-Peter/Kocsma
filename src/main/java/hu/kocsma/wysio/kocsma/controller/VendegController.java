@@ -23,8 +23,8 @@ public class VendegController {
     }
 
     @PostMapping()
-    public ResponseEntity<Vendeg> saveVendeg(@RequestBody VendegDTO vendegDTO) {
-        Vendeg savedVendeg = vendegService.saveVendeg(vendegDTO);
-        return new ResponseEntity<>(savedVendeg, HttpStatus.CREATED);
+    public ResponseEntity<VendegDTO> saveVendeg(@RequestBody VendegDTO vendegDTO) {
+        VendegDTO savedVendegDTO = vendegService.saveVendeg(vendegDTO);
+        return new ResponseEntity<>(savedVendegDTO, HttpStatus.CREATED);
     }
 }

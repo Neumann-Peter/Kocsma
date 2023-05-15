@@ -17,9 +17,9 @@ public class VendegService {
         this.vendegRepository = vendegRepository;
         this.vendegMapper = vendegMapper;
     }
-
-    public Vendeg saveVendeg(VendegDTO vendegDTO) {
+    public VendegDTO saveVendeg(VendegDTO vendegDTO) {
         Vendeg vendeg = vendegMapper.toEntity(vendegDTO);
-        return vendegRepository.save(vendeg);
+        Vendeg savedVendeg = vendegRepository.save(vendeg);
+        return vendegMapper.toDTO(savedVendeg);
     }
 }
