@@ -17,6 +17,7 @@ import java.util.Optional;
 public class KocsmazasService {
     private final KocsmazasRepository kocsmazasRepository;
     private final VendegRepository vendegRepository;
+
     @Autowired
     public KocsmazasService(KocsmazasRepository kocsmazasRepository, VendegRepository vendegRepository) {
         this.kocsmazasRepository = kocsmazasRepository;
@@ -26,7 +27,7 @@ public class KocsmazasService {
     public Kocsmazas saveKocsmazas(Long vendegId, Kocsmazas kocsmazas) {
         Optional<Vendeg> vendeg = vendegRepository.findById(vendegId);
 
-        if(vendeg.isEmpty()) {
+        if (vendeg.isEmpty()) {
             throw new VendegNotFoundException("Nem található Vendeg az adatbázisban a következő ID-val: " + vendegId);
         }
 
@@ -36,6 +37,7 @@ public class KocsmazasService {
 
         return kocsmazasRepository.save(kocsmazas);
     }
+
     public Kocsmazas lezaras(Long id) {
         Optional<Kocsmazas> kocsmazasOptional = kocsmazasRepository.findById(id);
 
@@ -44,7 +46,7 @@ public class KocsmazasService {
         }
 
         Kocsmazas kocsmazas = kocsmazasOptional.get();
-        if(kocsmazas.isLezarva()){
+        if (kocsmazas.isLezarva()) {
             throw new KocsmazasHasAlreadyClosedException("Már lezártad ezt a kocsmázást");
         }
         kocsmazas.setLezarva(true);

@@ -14,13 +14,6 @@ public class VendegMapper {
         vendeg.setBicepszMeret(vendegDTO.getBicepszMeret());
         return vendeg;
     }
-
-    public VendegDTO toDTO(Vendeg vendeg) {
-        VendegDTO vendegDTO = new VendegDTO();
-        vendegDTO.setBeceNev(vendeg.getBeceNev());
-        vendegDTO.setMajErosseg(vendeg.getMajErosseg());
-        vendegDTO.setBicepszMeret(vendeg.getBicepszMeret());
-        return vendegDTO;
-    }
 }
+
 

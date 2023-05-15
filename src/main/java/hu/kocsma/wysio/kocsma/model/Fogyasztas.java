@@ -2,7 +2,6 @@ package hu.kocsma.wysio.kocsma.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.List;
 
 @Data
 @Entity
@@ -15,6 +14,4 @@ public class Fogyasztas {
     private int elfogyaszottEgyseg;
     @ManyToOne
     private Kocsmazas kocsmazas;
-    @OneToMany
-    private List<Ital> italok;
 }

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 public class KocsmaApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(KocsmaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(KocsmaApplication.class, args);
+    }
 
 }
